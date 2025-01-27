@@ -11,6 +11,8 @@ class MedicalVisit extends Model
 
     protected $fillable = [
         'patient_id',
+        'doctor_id', // New field added
+        'nurse_id', // New field added
         'unique_id',
         'visit_date',
         'doctor_name',
@@ -33,5 +35,13 @@ class MedicalVisit extends Model
         return $this->belongsTo(User::class, 'patient_id');
     }
 
-    // Removed unnecessary relationships
+    public function doctor()
+    {
+        return $this->belongsTo(User::class, 'doctor_id'); // New relationship added
+    }
+
+    public function nurse()
+    {
+        return $this->belongsTo(User::class, 'nurse_id'); // Ensure nurse relationship is defined
+    }
 }

@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MedicalVisitController;
 use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/', function () {
@@ -35,6 +37,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('medical_visit/{id}/edit', [MedicalVisitController::class, 'edit'])->name('medical_visit.edit');
     Route::patch('medical_visit/{id}', [MedicalVisitController::class, 'update'])->name('medical_visit.update');
+    Route::patch('/medical_visit/{id}/approve', [MedicalVisitController::class, 'approve'])->name('medical_visit.approve');
+    Route::patch('/medical_visit/{id}/update_status', [MedicalVisitController::class, 'updateStatus'])->name('medical_visit.update_status');
 });
 
 require __DIR__.'/auth.php';
@@ -43,6 +47,7 @@ Route::get('admin/dashboard', [HomeController::class, 'adminIndex'])->name('admi
 
 // Add doctor panel routes
 Route::get('doctor/dashboard', [HomeController::class, 'doctorIndex'])->name('doctor.dashboard');
+Route::get('/doctor/medical-visits', [MedicalVisitController::class, 'getDoctorMedicalVisits'])->name('doctor.medical_visits');
 
 // Add patient panel routes
 Route::get('patient/dashboard', [HomeController::class, 'patientIndex'])->name('patient.dashboard');

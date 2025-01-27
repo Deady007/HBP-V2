@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\MedicalVisit;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -26,5 +28,13 @@ class HomeController extends Controller
     public function userIndex(Request $request)
     {
         return view('users.dashboard');
+    }
+
+    public function nurseIndex()
+    {
+        $nurseId = Auth::user()->id;
+        $medicalVisits = MedicalVisit::where('nurse_id', $nurseId)->paginate(10);
+
+        return view('medical_visit.index', compact('medicalVisits'));
     }
 }
