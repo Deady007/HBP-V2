@@ -63,8 +63,8 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Deepak</b>Foundation',
+    'logo_img' => 'vendor/adminlte/dist/img/Logo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -344,12 +344,7 @@ return [
                 'url' => 'medical_visit',
                 'icon' => 'fas fa-fw fa-notes-medical',
             ],
-            [
-                'text' => 'Logout',
-                'url' => 'logout',
-                'icon' => 'fas fa-fw fa-sign-out-alt',
-                'onclick' => "event.preventDefault(); document.getElementById('logout-form').submit();",
-            ],    
+             
        
     ],
 
@@ -408,6 +403,22 @@ return [
                 ],
             ],
         ],
+
+    'Fullcalendar' => [
+        'active' => true,
+        'files' => [
+            [
+                'type' => 'css',
+                'asset' => false,
+                'location' => '//cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css',
+            ],
+            [
+                'type' => 'js',
+                'asset' => false,
+                'location' => '//cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js',
+            ],
+        ],
+    ],
         'Select2' => [
             'active' => true,
             'files' => [

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\MedicalVisit;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -21,6 +22,18 @@ class UserController extends Controller
 
         $users = $query->paginate(5); // Retrieve 5 users per page
         return view('user.index', compact('users'));
+    }
+
+    // Show the admin dashboard
+    public function adminDashboard()
+    {
+        $totalPatients = User::where('usertype', 'patient')->count();
+        $activeDoctors = User::where('usertype', 'doctor')->count();
+        $activeNurses = User::where('usertype', 'nurse')->count();
+        // Replace with actual logic to fetch pending appointments
+        $totalMedicalVisits = MedicalVisit::count(); // Fetch the count of medical visits
+
+        return view('admin.index', compact('totalPatients', 'activeDoctors', 'activeNurses', 'totalMedicalVisits'));
     }
 
     // Show the form for creating a new user
