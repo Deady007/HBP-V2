@@ -43,7 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('admin/dashboard', [HomeController::class, 'adminIndex'])->name('admin.dashboard');
+Route::get('admin/dashboard', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
 
 // Add doctor panel routes
 Route::get('doctor/dashboard', [HomeController::class, 'doctorIndex'])->name('doctor.dashboard');
