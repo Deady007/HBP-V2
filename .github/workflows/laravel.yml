@@ -65,4 +65,4 @@ jobs:
         DB_DATABASE: sql12758660
         DB_USERNAME: sql12758660
         DB_PASSWORD: J8bxLkeZGK
-      run: php artisan test --env=testing
+      run: php artisan test
