@@ -31,6 +31,25 @@ class PatientController extends Controller
 
         return view('admin.patient.index', compact('patients'));
     }
+    public function list(Request $request)
+    {
+        $query = User::where('usertype', 'patient');
+
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('first_name', 'like', "%{$search}%")
+                  ->orWhere('middle_name', 'like', "%{$search}%")
+                  ->orWhere('last_name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('unique_id', 'like', "%{$search}%");
+            });
+        }
+
+        $patients = $query->paginate(10);
+
+        return view('admin.patient.list', compact('patients'));
+    }
 
     public function show($id)
     {
@@ -128,7 +147,7 @@ class PatientController extends Controller
             }
         });
 
-        return redirect()->route('admin.patient.index')->with('success', 'Patient created successfully.');
+        return redirect()->route('admin.patient.list')->with('success', 'Patient created successfully.');
     }
 
     public function storePatientData(Request $request, $id)
@@ -161,6 +180,17 @@ class PatientController extends Controller
         $patient = new Patient($patientData);
         $patient->save();
 
-        return redirect()->route('admin.patient.index')->with('success', 'Patient data stored successfully.');
+        return redirect()->route('admin.patient.list')->with('success', 'Patient data stored successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $patient = User::find($id);
+        if (!$patient) {
+            return redirect()->route('admin.patient.list')->with('error', 'Patient not found.');
+        }
+
+        $patient->delete();
+        return redirect()->route('admin.patient.list')->with('success', 'Patient deleted successfully.');
     }
 }

@@ -70,6 +70,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function() {
     Route::post('patient/{user}/approve', [PatientController::class, 'approve'])->name('patient.approve');
     Route::post('patient', [PatientController::class, 'store'])->name('patient.store');
     Route::put('patient/{id}/storePatientData', [PatientController::class, 'storePatientData'])->name('patient.storePatientData');
+    Route::get('patient-list', [PatientController::class, 'list'])->name('patient.list');
+    Route::delete('patient/{id}', [PatientController::class, 'destroy'])->name('patient.destroy'); // Add this line
 });
 
 Route::resource('medical_visit', MedicalVisitController::class);

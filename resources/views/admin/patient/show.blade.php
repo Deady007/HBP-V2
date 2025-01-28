@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="content-wrapper">
+<div class="content">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -101,7 +101,7 @@
                             @else
                             <p>Patient information is not available.</p>
                             @endif
-                            <a href="{{ route('admin.patient.index') }}" class="btn btn-primary mt-3">Back to List</a>
+                            
                         </div>
                     </div>
                 </div>
