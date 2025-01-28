@@ -54,6 +54,11 @@
                                         <td>
                                             <a href="{{ route('medical_visit.show', $visit->id) }}" class="btn btn-info">View Visit</a>
                                             <a href="{{ route('medical_visit.edit', $visit->id) }}" class="btn btn-primary">Edit Visit</a>
+                                            <form action="{{ route('medical_visit.destroy', $visit->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this visit?')">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endif
@@ -82,6 +87,11 @@
                                         <td>
                                             <a href="{{ route('medical_visit.show', $visit->id) }}" class="btn btn-info">View Visit</a>
                                             <a href="{{ route('medical_visit.edit', $visit->id) }}" class="btn btn-primary">Edit Visit</a>
+                                            <form action="{{ route('medical_visit.destroy', $visit->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this visit?')">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
