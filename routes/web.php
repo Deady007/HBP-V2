@@ -43,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('medical_visit/{id}', [MedicalVisitController::class, 'update'])->name('medical_visit.update');
     Route::patch('/medical_visit/{id}/approve', [MedicalVisitController::class, 'approve'])->name('medical_visit.approve');
     Route::patch('/medical_visit/{id}/update_status', [MedicalVisitController::class, 'updateStatus'])->name('medical_visit.update_status');
+    Route::delete('/medical_visit/{id}', [MedicalVisitController::class, 'destroy'])->name('medical_visit.destroy');
 });
 
 require __DIR__.'/auth.php';
@@ -74,6 +75,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function() {
     Route::post('patient/{user}/approve', [PatientController::class, 'approve'])->name('patient.approve');
     Route::post('patient', [PatientController::class, 'store'])->name('patient.store');
     Route::put('patient/{id}/storePatientData', [PatientController::class, 'storePatientData'])->name('patient.storePatientData');
+    Route::get('patient-list', [PatientController::class, 'list'])->name('patient.list');
+    Route::delete('patient/{id}', [PatientController::class, 'destroy'])->name('patient.destroy'); // Add this line
 });
 
 Route::resource('medical_visit', MedicalVisitController::class);

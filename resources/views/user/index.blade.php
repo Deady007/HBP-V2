@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="content-wrapper">
+<div class="content">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -39,6 +39,7 @@
                                         <th>Email</th>
                                         <th>User Type</th>
                                         <th>Unique ID</th>
+                                        <th>Phone Number</th> <!-- New column for phone number -->
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -49,6 +50,7 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->usertype }}</td>
                                             <td>{{ $user->unique_id }}</td>
+                                            <td>{{ $user->phone_number }}</td> <!-- Display phone number -->
                                             <td>
                                                 <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                                 <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST" style="display:inline;">
@@ -62,7 +64,9 @@
                                 </tbody>
                             </table>
 
-                            {{ $users->links() }}
+                            <div class="d-flex justify-content-center">
+                                {{ $users->links('pagination::bootstrap-4') }} <!-- Updated pagination styling -->
+                            </div>
                         </div>
                     </div>
                 </div>

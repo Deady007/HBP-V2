@@ -135,4 +135,13 @@ class MedicalVisitController extends Controller
 
         return redirect()->route('medical_visit.index')->with('success', 'Medical status updated successfully.');
     }
+
+    // Delete a specific medical visit
+    public function destroy($id)
+    {
+        $visit = MedicalVisit::findOrFail($id);
+        $visit->delete();
+
+        return redirect()->route('medical_visit.index')->with('success', 'Medical visit deleted successfully.');
+    }
 }

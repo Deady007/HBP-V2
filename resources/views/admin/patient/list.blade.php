@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Patients</h1>
+                    <h1>Patient List</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -23,7 +23,7 @@
                             <h3 class="card-title">Search Pending Users</h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.patient.index') }}" method="GET" class="form-inline">
+                            <form action="{{ route('admin.patient.list') }}" method="GET" class="form-inline">
                                 <div class="form-group mb-2">
                                     <input type="text" name="search" class="form-control" placeholder="Search by User name">
                                 </div>
@@ -34,42 +34,44 @@
                     </div>
                     <div class="card mt-3">
                         <div class="card-header">
-                            <h3 class="card-title">Users List</h3>
+                            <h3 class="card-title">Patients</h3>
                         </div>
                         <div class="card-body">
-                            
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Full Name</th>
                                         <th>Email</th>
+                                        <th>Unique ID</th>
+                                        <th>Phone Number</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($patients as $patient)
-                                        <tr>
-                                            <td>{{ $patient->first_name }} {{ $patient->middle_name }} {{ $patient->last_name }}</td>
-                                            <td>{{ $patient->email }}</td>
-                                            <td>
-                                                <a href="{{ route('admin.patient.show', $patient->id) }}" class="btn btn-info">View</a>
-                                                @if(!$patient->is_approved)
-                                                    <form action="{{ route('admin.patient.approve', $patient->id) }}" method="POST" style="display:inline;">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-success">Approve</button>
-                                                    </form>
-                                                @endif
-                                                <form action="{{ route('admin.patient.destroy', $patient->id) }}" method="POST" style="display:inline;">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>{{ $patient->id }}</td>
+                                        <td>{{ $patient->first_name }} {{ $patient->middle_name }} {{ $patient->last_name }}</td>
+                                        <td>{{ $patient->email }}</td>
+                                        <td>{{ $patient->unique_id }}</td>
+                                        <td>{{ $patient->phone_number }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.patient.show', $patient->id) }}" class="btn btn-info">View</a>
+                                            <a href="{{ route('admin.patient.edit', $patient->id) }}" class="btn btn-warning">Edit</a>
+                                            <form action="{{ route('admin.patient.destroy', $patient->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $patients->links() }}
+                            <div class="mt-3">
+                                {{ $patients->links() }}
+                            </div>
                         </div>
                     </div>
                 </div>

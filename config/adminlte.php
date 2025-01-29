@@ -328,7 +328,13 @@ return [
                 
             ],
             [
-                'text' => 'Patient Management',
+                'text' => 'Patient management',
+                'url' => 'admin/patient-list',
+                'icon' => 'fas fa-fw fa-user-injured',
+                
+            ],
+            [
+                'text' => 'Patient Approval',
                 'url' => 'admin/patient',
                 'icon' => 'fas fa-fw fa-user-injured',
                 
