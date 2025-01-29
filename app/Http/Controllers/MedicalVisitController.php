@@ -77,7 +77,7 @@ class MedicalVisitController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'diagnosis' => 'required|string',
+            'diagnosis' => 'nullable|string',
             'simplified_diagnosis' => 'nullable|string',
             'blood_pressure' => 'nullable|string',
             'heart_rate' => 'nullable|string',
