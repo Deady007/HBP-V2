@@ -46,7 +46,7 @@
             <div class="small-box bg-danger">
               <div class="inner">
                 <h3>{{ $totalMedicalVisits }}</h3>
-                <p>Pending Appointments</p>
+                <p>All Appointments</p>
               </div>
               <div class="icon">
                 <i class="ion ion-calendar"></i>
